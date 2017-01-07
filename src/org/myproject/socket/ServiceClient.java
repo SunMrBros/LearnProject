@@ -8,8 +8,9 @@ public class ServiceClient {
 
 	public static void main(String[] args) {
 //创建服务器端Socket
+		ServerSocket serverSocket=null;
 		try {
-			ServerSocket serverSocket =new ServerSocket(8888);
+			serverSocket =new ServerSocket(8888);
 			//调用accept() 方法开始监听，等待客户端连接
 			System.out.println("服务器已经启动，等待连接。。。");
 			Socket socket=null;
