@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -13,8 +14,16 @@ public class Client {
 	
 	public static void main(String[] args){
 		//创建客户端Socket ，指定服务器端地址和端口
+		InetAddress address=null;
 		try {
-			Socket socket=new Socket("127.0.0.1",8888);
+			//信息发往本机
+			address=InetAddress.getLocalHost();
+		} catch (UnknownHostException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			Socket socket=new Socket(address,8888);
 			//获取输出流，用来向服务器端发送信息
 			OutputStream os=socket.getOutputStream();
 			PrintWriter pw=new PrintWriter(os);

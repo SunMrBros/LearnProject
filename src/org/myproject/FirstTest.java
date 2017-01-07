@@ -16,9 +16,15 @@ public class FirstTest {
 
 	public static void main(String[] args) throws UnknownHostException {
 		InetAddress address=InetAddress.getLocalHost();
-		System.out.println(""+address.getAddress());
-		System.out.println(""+address.getHostAddress());
-		System.out.println(""+address.getHostName());
+		System.out.println("getAddress()"+address.getAddress());
+		byte[] bytes=address.getAddress();
+		System.out.println(bytes.toString());
+		for(byte i:bytes){
+			System.out.println(i);
+		}
+		System.out.println("getHostAddress()"+address.getHostAddress());
+		System.out.println("getHostName()"+address.getHostName());
+//		System.out.println(""+address.getByte());
 		BufferedReader br=null;
 		BufferedWriter bw=null;
 		try {
@@ -28,14 +34,14 @@ public class FirstTest {
 			System.out.println(url.getHost());
 			System.out.println(url.getPort());
 			
-			bw=new BufferedWriter(new FileWriter(new File("/Users/KangZheng/Documents/baidu.html")));
-			InputStream in=baidu.openStream();
-			InputStreamReader isr=new InputStreamReader(in,"utf-8");
-			br=new BufferedReader(isr);
-			String str=null;
-			while((str=br.readLine())!=null){
-				bw.write(str);
-			}
+//			bw=new BufferedWriter(new FileWriter(new File("/Users/KangZheng/Documents/baidu.html")));
+//			InputStream in=baidu.openStream();
+//			InputStreamReader isr=new InputStreamReader(in,"utf-8");
+//			br=new BufferedReader(isr);
+//			String str=null;
+//			while((str=br.readLine())!=null){
+//				bw.write(str);
+//			}
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
