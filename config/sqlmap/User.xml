@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+	<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<!-- namespace命名空间，作用就是对sql进行分类化管理，理解sql隔离 
+	注意：使用mapper代理方法开发，namespace有特殊重要的作用
+	-->
+	<mapper namespace="test">
+		<select id='findUserById' parameterType="int" resultType="org.myproject.po.User">
+			select * from User where id=#{id}
+		</select>
+		
+		<insert id="insertUser" parameterType="org.myproject.po.User">
+			<selectKey keyProperty="id" resultType="int" order="AFTER">
+				select 	LAST_INSERT_ID();
+			</selectKey>
+			insert into user (username,sex,birthday,address) values(#{username},#{sex},#{birthday},#{address})
+		</insert>
+	
+		<select id="findUsers" resultType="org.myproject.po.User">
+			select * from user
+		</select>
+		
+		<select id="findUserbyName" parameterType="java.lang.String" resultType="org.myproject.po.User">
+		
+			select * from user u where u.username like '%${value}%'
+		</select>
+	
+	</mapper>
+
